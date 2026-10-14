@@ -784,7 +784,8 @@ jobs:
 
       - name: 验证发布产物
         run: |
-          KERNEL_COUNT=$(find ./downloaded-artifacts -type f -path './downloaded-artifacts/*_kernel-*/*' -name '*AnyKernel3.zip' | wc -l)
+          # KERNEL_COUNT=$(find ./downloaded-artifacts -type f -path './downloaded-artifacts/*_kernel-*/*' -name '*AnyKernel3.zip' | wc -l)
+          KERNEL_COUNT=$(find ./downloaded-artifacts -type f \( -name '*-KSU.zip' -o -name '*-VNL.zip' \) | wc -l)
           if [ "$KERNEL_COUNT" -eq 0 ]; then
             echo "::error::未找到可发布的内核 AnyKernel3 包。"
             exit 1
